@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutonomousDistance;
+import frc.robot.commands.DriveDistance;
 import frc.robot.commands.AutonomousTime;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drivetrain;
@@ -66,12 +67,20 @@ public class RobotContainer {
     joystickAButton
         .onTrue(new InstantCommand(() -> m_arm.setAngle(45.0), m_arm))
         .onFalse(new InstantCommand(() -> m_arm.setAngle(0.0), m_arm));
+    
 
     JoystickButton joystickBButton = new JoystickButton(m_controller, 2);
     joystickBButton
         .onTrue(new InstantCommand(() -> m_arm.setAngle(90.0), m_arm))
         .onFalse(new InstantCommand(() -> m_arm.setAngle(0.0), m_arm));
-
+    JoystickButton joystickXButton = new JoystickButton(m_controller, 4);
+    joystickXButton
+        .onTrue(new InstantCommand(() -> m_arm.setAngle(90.0), m_arm))
+        .onFalse(new InstantCommand(() -> m_arm.setAngle(0.0), m_arm));
+    JoystickButton joystickYButton = new JoystickButton(m_controller, 5);
+    joystickYButton
+        .onTrue(new DriveDistance(3, 12, m_drivetrain));
+    
     // Setup SmartDashboard options
     m_chooser.setDefaultOption("Auto Routine Distance", new AutonomousDistance(m_drivetrain));
     m_chooser.addOption("Auto Routine Time", new AutonomousTime(m_drivetrain));
