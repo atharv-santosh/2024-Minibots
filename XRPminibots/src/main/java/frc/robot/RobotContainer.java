@@ -82,8 +82,8 @@ public class RobotContainer {
         .onTrue(new DriveDistance(3, 12, m_drivetrain));
     
     // Setup SmartDashboard options
-    m_chooser.setDefaultOption("Auto Routine Distance", new AutonomousDistance(m_drivetrain));
-    m_chooser.addOption("Auto Routine Time", new AutonomousTime(m_drivetrain));
+    m_chooser.setDefaultOption("Auto Routine Distance", new AutonomousDistance(m_drivetrain, m_ReflectiveSensor));
+    m_chooser.addOption("Auto Routine Time", new AutonomousTime(m_drivetrain, m_ReflectiveSensor));
     SmartDashboard.putData(m_chooser);
   }
 
