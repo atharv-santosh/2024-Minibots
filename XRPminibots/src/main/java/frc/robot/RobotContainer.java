@@ -7,12 +7,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.AutonomousDistance;
-import frc.robot.commands.DriveDistance;
-import frc.robot.commands.AutonomousTime;
-import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.xrp.XRPOnBoardIO;
@@ -21,6 +15,13 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.AutonomousDistance;
+import frc.robot.commands.AutonomousTime;
+import frc.robot.commands.DriveDistance;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.ReflectiveSensor;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -32,7 +33,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain m_drivetrain = new Drivetrain();
   private final XRPOnBoardIO m_onboardIO = new XRPOnBoardIO();
-  private final Arm m_arm = new Arm();
+  private final ReflectiveSensor m_ReflectiveSensor = new ReflectiveSensor();
+  public final Arm m_arm = new Arm();
 
   // Assumes a gamepad plugged into channel 0
   private final Joystick m_controller = new Joystick(0);
@@ -45,6 +47,9 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
   }
+
+ 
+
 
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -83,7 +88,7 @@ public class RobotContainer {
     
     // Setup SmartDashboard options
     m_chooser.setDefaultOption("Auto Routine Distance", new AutonomousDistance(m_drivetrain, m_ReflectiveSensor));
-    m_chooser.addOption("Auto Routine Time", new AutonomousTime(m_drivetrain));
+    m_chooser.addOption("Auto Routine Time", new AutonomousTime(m_drivetrain, m_ReflectiveSensor));
     SmartDashboard.putData(m_chooser);
   }
 
