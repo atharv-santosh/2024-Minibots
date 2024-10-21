@@ -8,7 +8,6 @@ import edu.wpi.first.util.sendable.SendableRegistry;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.xrp.XRPGyro;
 import edu.wpi.first.wpilibj.xrp.XRPMotor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -57,23 +56,23 @@ public class Drivetrain extends SubsystemBase {
     m_rightEncoder.setDistancePerPulse((Math.PI * kWheelDiameterInch) / kCountsPerRevolution);
     resetEncoders();
   }
-  public void debugSubsystem() {
-    SmartDashboard.putNumber("Shooter Velocity (RPM)", shooterController.getEncoder().getVelocity());
-    SmartDashboard.putNumber("Direction Velocity (RPM)", directionController.getEncoder().getVelocity());
-    beamBreak.sendBeamBreakDataToDashboard();
-    Logger.recordOutput(SHOOTER_VELOCITY_KEY, shooterController.getEncoder().getVelocity());
-    Logger.recordOutput(SHOOTER_DIRECT_VELOCITY_KEY, directionController.getEncoder().getVelocity());
-    Logger.recordOutput(SHOOTER_FEEDER_PERCENTAGE_KEY, feederController.get());
-    Logger.recordOutput(SHOOTER_MOTOR_VELOCITY_KEY, shooterController.getEncoder().getVelocity());
-    Logger.recordOutput(FEEDER_MOTOR_CURRENT_KEY, feederController.getOutputCurrent());
-    Logger.recordOutput(SHOOTER_MOTOR_CURRENT_KEY, shooterController.getOutputCurrent());
-    Logger.recordOutput(SHOOTER_STATE_KEY, getCurrentState());
-    Logger.recordOutput("Shooter"+  "/Direction Motor Current", directionController.getOutputCurrent());
-    Logger.recordOutput("Shooter/is Shooting", isShooting);
-    Logger.recordOutput("Shooter/feeding from indexer", isFeedingFromIndexer);
-    Logger.recordOutput("Shooter/Timer Time", mTimer.get());
+  // public void debugSubsystem() {
+  //   SmartDashboard.putNumber("Shooter Velocity (RPM)", shooterController.getEncoder().getVelocity());
+  //   SmartDashboard.putNumber("Direction Velocity (RPM)", directionController.getEncoder().getVelocity());
+  //   beamBreak.sendBeamBreakDataToDashboard();
+  //   Logger.recordOutput(SHOOTER_VELOCITY_KEY, shooterController.getEncoder().getVelocity());
+  //   Logger.recordOutput(SHOOTER_DIRECT_VELOCITY_KEY, directionController.getEncoder().getVelocity());
+  //   Logger.recordOutput(SHOOTER_FEEDER_PERCENTAGE_KEY, feederController.get());
+  //   Logger.recordOutput(SHOOTER_MOTOR_VELOCITY_KEY, shooterController.getEncoder().getVelocity());
+  //   Logger.recordOutput(FEEDER_MOTOR_CURRENT_KEY, feederController.getOutputCurrent());
+  //   Logger.recordOutput(SHOOTER_MOTOR_CURRENT_KEY, shooterController.getOutputCurrent());
+  //   Logger.recordOutput(SHOOTER_STATE_KEY, getCurrentState());
+  //   Logger.recordOutput("Shooter"+  "/Direction Motor Current", directionController.getOutputCurrent());
+  //   Logger.recordOutput("Shooter/is Shooting", isShooting);
+  //   Logger.recordOutput("Shooter/feeding from indexer", isFeedingFromIndexer);
+  //   Logger.recordOutput("Shooter/Timer Time", mTimer.get());
         
-  }
+  // }
   public void arcadeDrive(double xaxisSpeed, double zaxisRotate) {
     m_diffDrive.arcadeDrive(xaxisSpeed, zaxisRotate);
   }
