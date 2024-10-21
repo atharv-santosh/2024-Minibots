@@ -26,13 +26,14 @@ public class DriveAutoAlign extends Command {
 
     @Override
     public void execute(){
-        m_drivetrain.arcadeDrive(m_speed, 0);
-        while (m_reflectiveSensor.leftValue() < 4){
-            new TurnDegrees(-2, 1, m_drivetrain);
+        if(m_reflectiveSensor.leftValue()<0.81 && m_reflectiveSensor.rightValue()<0.81){
+        m_drivetrain.arcadeDrive(1, 0);
+        }else if(m_reflectiveSensor.leftValue()>0.81){
+            m_drivetrain.arcadeDrive(0, -0.5);
+        }else if(m_reflectiveSensor.rightValue()>0.81){
+            m_drivetrain.arcadeDrive(0, 0.5);
         }
-         while (m_reflectiveSensor.rightValue() < 4){
-            new TurnDegrees(2, 1,m_drivetrain);
-        }
+    
     }
 
     // public boolean turnFinished() {
